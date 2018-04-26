@@ -2,7 +2,7 @@
 
 Repozytorium zawiera przykłady omawiane podczas warsztatów.
 
-**_Każdy warsztat jest w osobnych branch'ach, może ich by kilka dla jednego warsztatu ale zawsze mają ten sam prefiks. Poniżej w nawiasach wskazano prefiks branch'y związanych z danym warsztatem._**
+**_Każdy warsztat jest w osobnych branch'ach, może ich być kilka dla jednego warsztatu ale zawsze mają ten sam prefiks. Poniżej w nawiasach wskazano prefiks branch'y związanych z danym warsztatem._**
 
 ### DevExpress Reports Designer (branch'e devexpress_reports_designer/*)
 
