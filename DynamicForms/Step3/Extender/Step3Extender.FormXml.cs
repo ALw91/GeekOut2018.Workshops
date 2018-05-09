@@ -39,6 +39,7 @@ namespace DynamicForms.Step3.Extender {
         }
 
         private UIElement getUIElement(int i) {
+            var env = new EnvironmentExtender();
             var row = new RowContainer();
             var group = new GroupContainer {
                 DataContext = "{Tasks[" + i + "]}",
@@ -59,6 +60,11 @@ namespace DynamicForms.Step3.Extender {
             var stackRight = new StackContainer {
                 LabelWidth = "20"
             };
+
+            if (env.IsHtml) {
+                stackLeft.Class = new[] { UIClass.Tight };
+                stackRight.Class = new[] {UIClass.Tight};
+            }
 
             var labelContact = new LabelElement {
                 CaptionHtml = "{Zadanie.Przedstawiciel.Nazwa}",
