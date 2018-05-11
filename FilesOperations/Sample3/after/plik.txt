@@ -1,0 +1,3 @@
+Definicja: FV
+Magazyn: FIRMA
+Kontrahent: ABC
