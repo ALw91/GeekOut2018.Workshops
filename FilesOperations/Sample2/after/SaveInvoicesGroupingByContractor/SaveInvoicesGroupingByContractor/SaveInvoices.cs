@@ -5,6 +5,7 @@ using Soneta.Business;
 using Soneta.Business.App;
 using Soneta.Business.UI;
 using Soneta.Handel;
+using Soneta.Tools;
 
 [assembly: Worker(typeof(SaveInvoices), typeof(DokHandlowe))]
 
@@ -28,23 +29,22 @@ namespace SaveInvoicesGroupingByContractor
             if (fss == null)
                 return null;
 
-            var faktury = DokumentyHandlowe.GroupBy(f => f.Kontrahent);
+            var faktury = DokumentyHandlowe;
 
             fss.CreateDirectory(@"C:\faktury\");
 
             foreach (var faktura in faktury)
             {
-                var path = @"C:\faktury\" + faktura.Select(f => f.Kontrahent).First();
+                var kontahentName = faktura.Kontrahent.Nazwa?? "Pozostali";
+                var path = Path.Combine(@"C:\faktury\", GlobalTools.ClearInvalidFileNameChars(kontahentName));
                 fss.CreateDirectory(path);
 
-                foreach (var fak in faktura)
-                {
-                    CreateCorrectContext(fak);
-                    var report = GenerateReport();
-                    var raportNamePath = path + "\\" + fak.Numer.NumerPelny.Replace(@"/", "") + ".pdf";
-                    fss.WriteFile(raportNamePath, ((MemoryStream)report).ToArray());
-                }
+                CreateCorrectContext(faktura);
+                var report = GenerateReport();
+                var raportNamePath = Path.Combine(path + "\\", faktura.Numer.NumerPelny.Replace(@"/", "") + ".pdf");
+                fss.WriteFile(raportNamePath, ((MemoryStream) report).ToArray());
             }
+
             return null;
         }
 

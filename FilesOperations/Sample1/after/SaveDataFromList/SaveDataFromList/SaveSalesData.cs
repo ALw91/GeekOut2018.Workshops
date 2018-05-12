@@ -19,7 +19,7 @@ namespace SaveDataFromList
         [Context]
         public FromTo FromTo { get; set; }
 
-        [Action("Zapisz dane do plliku",
+        [Action("Zapisz dane do pliku",
             Target = ActionTarget.ToolbarWithText | ActionTarget.Menu | ActionTarget.LocalMenu | ActionTarget.Divider,
             Mode = ActionMode.SingleSession)]
         public NamedStream SaveDataWorker()

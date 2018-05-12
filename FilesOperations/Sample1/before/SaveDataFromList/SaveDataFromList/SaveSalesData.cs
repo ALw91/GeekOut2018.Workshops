@@ -9,7 +9,7 @@ namespace SaveDataFromList
     public class SaveSalesData
     {
 
-        [Action("Zapisz dane do plliku",
+        [Action("Zapisz dane do pliku",
             Target = ActionTarget.ToolbarWithText | ActionTarget.Menu | ActionTarget.LocalMenu | ActionTarget.Divider,
             Mode = ActionMode.SingleSession)]
         public NamedStream SaveDataWorker()
