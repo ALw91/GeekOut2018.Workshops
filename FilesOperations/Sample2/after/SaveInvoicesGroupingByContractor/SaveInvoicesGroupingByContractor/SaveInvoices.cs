@@ -35,13 +35,14 @@ namespace SaveInvoicesGroupingByContractor
 
             foreach (var faktura in faktury)
             {
-                var kontahentName = faktura.Kontrahent.Nazwa?? "Pozostali";
+                var kontahentName = faktura.Kontrahent?.Nazwa ?? "Pozostali";
                 var path = Path.Combine(@"C:\faktury\", GlobalTools.ClearInvalidFileNameChars(kontahentName));
                 fss.CreateDirectory(path);
 
                 CreateCorrectContext(faktura);
                 var report = GenerateReport();
-                var raportNamePath = Path.Combine(path + "\\", faktura.Numer.NumerPelny.Replace(@"/", "") + ".pdf");
+                var reportName = GlobalTools.ClearInvalidFileNameChars(faktura.Numer.NumerPelny + ".pdf");
+                var raportNamePath = Path.Combine(path, reportName);
                 fss.WriteFile(raportNamePath, ((MemoryStream) report).ToArray());
             }
 
